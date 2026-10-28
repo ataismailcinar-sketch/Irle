@@ -1,0 +1,67 @@
+# ============================================================
+#  İrle .gitignore
+# ============================================================
+
+# --- Gizli bilgiler (ASLA commit etme) ----------------------
+.env
+.env.*
+secrets.json
+
+# --- Kişisel çalışma verisi ----------------------------------
+# konuşma geçmişin
+data/konusmalar.json
+# notların
+data/notlar.json
+data/screenshots/
+# bu bilgisayara özel kalibrasyon
+data/calibration.json
+
+# --- İndirilen büyük dosyalar --------------------------------
+# (python tools/hazirlik_kontrol.py --indir yeniden indirir)
+# Piper sesleri (~60 MB)
+data/sesler/
+# MediaPipe el/yüz modelleri
+data/models/*.task
+
+# --- Kurulum logları -----------------------------------------
+kurulum_log.txt
+kurulum_kontrol.txt
+kurulum_test.txt
+
+# --- Python ---------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+venv/
+.venv/
+env/
+dist/
+build/
+*.egg-info/
+
+# --- IDE / işletim sistemi ------------------------------------
+.vscode/
+.idea/
+*.suo
+*.user
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# --- Flutter (telefon kumandası) ------------------------------
+kontrolcu_mobile/build/
+kontrolcu_mobile/.dart_tool/
+kontrolcu_mobile/.flutter-plugins
+kontrolcu_mobile/.flutter-plugins-dependencies
+kontrolcu_mobile/pubspec.lock
+kontrolcu_mobile/android/.gradle/
+kontrolcu_mobile/android/local.properties
+
+# --- Derlenmiş uygulamalar (GitHub Releases'e koy) ------------
+*.apk
+*.aab
+*.ipa

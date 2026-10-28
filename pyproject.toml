@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "irle"
+version = "2.5.0"
+description = "İrle — Türkçe konuşan, internetsiz de çalışan Jarvis tarzı Windows asistanı"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Ata İsmail Çınar" }]
+license = { text = "MIT" }
+
+[project.optional-dependencies]
+windows = [
+    "psutil>=5.9.0",
+    "pyautogui>=0.9.54",
+    "opencv-python>=4.8.0",
+    "screen-brightness-control>=0.22.0",
+    "wmi>=1.5.1",
+    "pywinctl>=0.1.0",
+    "pyperclip>=1.8.2",
+    "mediapipe>=0.10.33",
+    "pywin32>=306",
+    "flask>=3.0.0",
+    "flask-socketio>=5.3.0",
+    "qrcode[pil]>=8.0",
+    "pillow>=10.0.0",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--tb=short"
+# src/ ve proje kökü her ikisi de Python path'e eklenir
+pythonpath = [".", "src"]
+
+[tool.coverage.run]
+source = ["src/irle"]
+omit = ["tests/*"]
+
+# ---------------------------------------------------------------------------
+# Pyright / Pylance tip denetleyicisi ayarları
+# ---------------------------------------------------------------------------
+[tool.pyright]
+# src/ zaten setuptools ile import root, ama proje kökü de
+# eklenirse `config`, `modules` vb. modeller de bulunur.
+extraPaths = ["."]
+reportMissingModuleSource = "none"

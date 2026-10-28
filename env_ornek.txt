@@ -1,0 +1,61 @@
+# =====================================================================
+#  İRLE AYARLARI — Bu dosyayı ".env" adıyla kopyala (env_ornek.txt → .env) ve doldur.
+#  .env dosyası .gitignore'da; anahtarın asla GitHub'a gitmez.
+# =====================================================================
+
+# --- Beyin modu ------------------------------------------------------
+#  hibrit : internet varsa Groq (ücretsiz bulut), yoksa Ollama (yerel)
+#  bulut  : sadece Groq
+#  yerel  : sadece Ollama — tamamen çevrimdışı (köy modu)
+#  kapali : dil modeli yok, eski kural motoru
+IRLE_BEYIN_MODU=hibrit
+
+# --- Groq (ücretsiz, kredi kartı istemez) ----------------------------
+#  1) https://console.groq.com adresinde Google hesabınla giriş yap
+#  2) "API Keys" → "Create API Key" → anahtarı aşağıya yapıştır
+GROQ_API_KEY=
+IRLE_GROQ_MODEL=llama-3.3-70b-versatile
+
+# --- Ollama (yerel, çevrimdışı) --------------------------------------
+#  1) https://ollama.com → Windows için indir, kur
+#  2) Terminalde:  ollama pull qwen2.5:7b
+#     Yavaş gelirse daha küçük model:  ollama pull qwen2.5:3b
+IRLE_OLLAMA_URL=http://localhost:11434/v1
+IRLE_OLLAMA_MODEL=qwen2.5:7b
+
+# --- Kişilik ---------------------------------------------------------
+IRLE_ASISTAN_ADI=İrle
+# Sana hangi isimle hitap etsin (boş bırakabilirsin)
+IRLE_KULLANICI_ADI=Ata
+
+# --- Ses (TTS) -------------------------------------------------------
+#  auto    : data/sesler'de Türkçe Piper sesi varsa onu, yoksa Windows sesini kullan
+#  piper / pyttsx3 : zorla o motor
+IRLE_SES_MOTORU=auto
+#  Boşsa ilk bulunan Türkçe ses. Seçenekler: tr_TR-fahrettin-medium, tr_TR-fettah-medium, tr_TR-dfki-medium
+IRLE_PIPER_SES=
+#  1.0 normal, 1.2 biraz hızlı, 0.9 biraz yavaş
+IRLE_PIPER_HIZ=1.0
+
+# --- Kulak (konuşmayı metne çevirme) --------------------------------
+#  hibrit : Groq Whisper (internet, ücretsiz) → yerel Whisper → Google
+#  yerel  : sadece yerel Whisper — tamamen çevrimdışı
+#  groq / google : sadece o servis (+ Google yedek)
+IRLE_KULAK=hibrit
+#  tiny / base / small / medium / turbo — büyüdükçe daha doğru ama daha yavaş
+#  RTX 3050 + 4 GB için: ekran kartı çalışırsa "turbo", işlemcide "small" iyi denge
+IRLE_WHISPER_MODEL=small
+IRLE_WHISPER_CIHAZ=auto
+
+# --- Araya girme ----------------------------------------------------
+#  İrle konuşurken "dur / sus / yeter" ya da "İrle, ..." diyerek kesebilirsin
+IRLE_KESME=true
+
+# --- Uyandırma kelimesi (opsiyonel) ----------------------------------
+#  Doluysa sadece "İrle ..." diye başlayan cümleler işlenir (TV/müzik komut sanılmaz).
+#  Cevaptan sonra IRLE_UYANDIRMA_PENCERE saniye boyunca kelimesiz devam edebilirsin.
+IRLE_UYANDIRMA=
+IRLE_UYANDIRMA_PENCERE=20
+
+# --- Diğer -----------------------------------------------------------
+IRLE_LOG_LEVEL=INFO

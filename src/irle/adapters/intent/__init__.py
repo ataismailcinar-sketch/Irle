@@ -1,0 +1,1 @@
+# adapters/intent sub-package
